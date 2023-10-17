@@ -15,7 +15,7 @@ const HeroSection = () => {
                     transition={{ duration: 0.5 }}
                     className="col-span-8 text-center place-self-center sm:text-left justify-self-start"
                 >
-                    <h1 className="mb-4 text-4xl font-extrabold text-whiteSoft sm:text-5xl lg:text-8xl lg:leading-normal">
+                    <h1 className="mb-4 text-4xl font-extrabold dark:text-whiteSoft sm:text-5xl lg:text-8xl lg:leading-normal">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-thirdly">
                             Hello, I&apos;m{" "}
                         </span>
@@ -34,7 +34,7 @@ const HeroSection = () => {
                             repeat={Infinity}
                         />
                     </h1>
-                    <p className="mb-6 text-base text-text4 sm:text-lg lg:text-xl">
+                    <p className="mb-6 text-base dark:text-text4 sm:text-lg lg:text-xl">
                         I&apos;m a Front-end developer with experience in React
                         Native, ReactJS and Next. I enjoy building responsive UI
                         components and integrating APIs.
@@ -42,15 +42,17 @@ const HeroSection = () => {
                     <div>
                         <Link
                             href="#contact"
-                            className="inline-block w-full px-6 py-3 mr-4 rounded-full text-whiteSoft sm:w-fit bg-gradient-to-br from-primary to-secondary"
+                            className="inline-block w-full px-1 py-1 mr-4 rounded-full dark:text-whiteSoft sm:w-fit bg-gradient-to-br from-primary to-thirdly"
                         >
-                            Hire Me
+                            <span className="block px-5 py-2 bg-white rounded-full dark:bg-darkStrock dark:hover:bg-primary hover:bg-thirdly hover:text-whiteSoft">
+                                Hire Me
+                            </span>
                         </Link>
                         <Link
                             href="/"
-                            className="inline-block w-full px-1 py-1 mt-3 rounded-full text-whiteSoft sm:w-fit bg-gradient-to-br from-primary to-secondary"
+                            className="inline-block w-full px-1 py-1 mt-3 rounded-full dark:text-whiteSoft sm:w-fit bg-gradient-to-br from-primary to-secondary"
                         >
-                            <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
+                            <span className="block px-5 py-2 bg-white rounded-full dark:bg-darkStrock dark:hover:bg-primary hover:bg-thirdly hover:text-whiteSoft">
                                 Download CV
                             </span>
                         </Link>

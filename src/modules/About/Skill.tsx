@@ -78,8 +78,8 @@ const Skills = () => {
                         data-aos="fade-up"
                     >
                         <div
-                            className="mb-1 flex items-center justify-center w-[120px] h-[120px] bg-text4
-                                 rounded-full transition-all duration-300 ease-in-out hover:bg-thirdly"
+                            className="mb-1 flex items-center justify-center w-[120px] h-[120px] bg-darkStrock dark:bg-text4
+                                 rounded-full transition-all duration-300 ease-in-out hover:bg-thirdly dark:hover:bg-thirdly cursor-pointer"
                         >
                             <div
                                 className="bg-center bg-no-repeat bg-cover w-[60%] h-[60%] rounded"

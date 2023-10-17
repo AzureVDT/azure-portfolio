@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { LightModeIcon } from "../icon";
+import { DarkModeIcon, LightModeIcon } from "../icon";
+import DarkMode from "../DarkMode";
 const navLinks = [
     {
         title: "About",
@@ -18,7 +19,7 @@ const navLinks = [
 ];
 const Navbar = () => {
     return (
-        <div className="flex items-center justify-between p-3 rounded-lg shadow-xl">
+        <div className="fixed top-0 left-0 right-0 flex items-center justify-between p-3 shadow-xl z-[9999] dark:bg-darkSoft bg-graySoft">
             <Link
                 className="flex items-center justify-center gap-x-5"
                 href={"/"}
@@ -26,7 +27,7 @@ const Navbar = () => {
                 <div className="relative rounded-lg">
                     <Image
                         src={"/Logo.jpg"}
-                        alt=""
+                        alt="AzureVDT"
                         width={40}
                         height={40}
                         priority
@@ -35,6 +36,7 @@ const Navbar = () => {
                 </div>
                 <span className="text-lg font-semibold">AzureVDT</span>
             </Link>
+            <DarkMode />
             <div className="flex items-center justify-center">
                 {navLinks.map((link) => (
                     <a
@@ -45,9 +47,6 @@ const Navbar = () => {
                         {link.title}
                     </a>
                 ))}
-                <span className="cursor-pointer">
-                    <LightModeIcon></LightModeIcon>
-                </span>
             </div>
         </div>
     );

@@ -15,7 +15,7 @@ const ProjectCard = ({
     previewUrl,
 }: ProjectCardProps) => {
     return (
-        <Link href={`/details`}>
+        <Link href={`#`}>
             <div
                 className="relative h-52 md:h-72 rounded-t-xl group"
                 style={{
@@ -25,8 +25,8 @@ const ProjectCard = ({
             >
                 <div className="absolute top-0 left-0 items-center justify-center hidden w-full h-full transition-all duration-500 bg-opacity-0 overlay bg-softDark rounded-t-xl group-hover:flex group-hover:bg-opacity-80"></div>
             </div>
-            <div className="text-white rounded-b-xl mt-3 bg-[#181818]py-6 px-4">
-                <h5 className="mb-2 text-xl font-semibold text-graySoft">
+            <div className="px-4 py-6 mt-3 dark:text-white rounded-b-xl">
+                <h5 className="mb-2 text-xl font-semibold dark:text-graySoft">
                     {title}
                 </h5>
                 <p className="leading-relaxed">{description}</p>

@@ -5,12 +5,10 @@ interface ProjectTagProps {
     isSelected: boolean;
 }
 const ProjectTag = ({ name, onClick, isSelected }: ProjectTagProps) => {
-    const buttonStyles = isSelected
-        ? "text-white bg-gradient-to-r from-primary to-thirdly"
-        : "";
+    const buttonStyles = isSelected ? "primaryGradient" : "";
     return (
         <button
-            className={`${buttonStyles} rounded-full border-2 px-8 py-2 text-xl cursor-pointer mb-5`}
+            className={`${buttonStyles} rounded-full border-2 px-8 py-2 text-xl cursor-pointer mb-5 hover:primaryGradient`}
             onClick={() => onClick(name)}
         >
             {name}

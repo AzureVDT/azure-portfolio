@@ -15,7 +15,7 @@ const info = {
 };
 const Info = () => {
     return (
-        <div className="flex items-center justify-between gap-x-[100px] shadow-md mb-[125px]">
+        <div className="flex items-center justify-between gap-x-[100px] mb-[125px]">
             <div className="relative rounded-lg" data-aos="fade-up-left">
                 <Image
                     src={"/about-image.png"}
@@ -29,48 +29,68 @@ const Info = () => {
                 className="flex flex-col flex-1 gap-5"
                 data-aos="fade-up-right"
             >
-                <h3 className="text-3xl font-semibold text-thirdly">
+                <h3 className="text-3xl font-semibold dark:text-thirdly text-text2">
                     PERSONAL INFORMATION
                 </h3>
-                <ul className="grid grid-cols-2 text-lg gap-y-5 text-graySoft">
+                <ul className="grid grid-cols-2 text-lg gap-y-5 dark:text-graySoft">
                     <li>
-                        <span className="text-primary">First Name: </span>
+                        <span className="dark:text-primary text-thirdly">
+                            First Name:{" "}
+                        </span>
                         {info.firstName}
                     </li>
                     <li>
-                        <span className="text-primary">Last Name: </span>
+                        <span className="dark:text-primary text-thirdly">
+                            Last Name:{" "}
+                        </span>
                         {info.lastName}
                     </li>
                     <li>
-                        <span className="text-primary">Date of birth: </span>
+                        <span className="dark:text-primary text-thirdly">
+                            Date of birth:{" "}
+                        </span>
                         {info.birthday}
                     </li>
                     <li>
-                        <span className="text-primary">Sex: </span>
+                        <span className="dark:text-primary text-thirdly">
+                            Sex:{" "}
+                        </span>
                         {info.sex}
                     </li>
                     <li>
-                        <span className="text-primary">National: </span>
+                        <span className="dark:text-primary text-thirdly">
+                            National:{" "}
+                        </span>
                         {info.nation}
                     </li>
                     <li>
-                        <span className="text-primary">Address: </span>
+                        <span className="dark:text-primary text-thirdly">
+                            Address:{" "}
+                        </span>
                         {info.address}
                     </li>
                     <li>
-                        <span className="text-primary">Phone: </span>
+                        <span className="dark:text-primary text-thirdly">
+                            Phone:{" "}
+                        </span>
                         {info.phone}
                     </li>
                     <li>
-                        <span className="text-primary">Facebook: </span>
+                        <span className="dark:text-primary text-thirdly">
+                            Facebook:{" "}
+                        </span>
                         {info.facebook}
                     </li>
                     <li>
-                        <span className="text-primary">Language: </span>
+                        <span className="dark:text-primary text-thirdly">
+                            Language:{" "}
+                        </span>
                         {info.language}
                     </li>
                     <li>
-                        <span className="text-primary">Email address: </span>
+                        <span className="dark:text-primary text-thirdly">
+                            Email address:{" "}
+                        </span>
                         {info.email}
                     </li>
                 </ul>
