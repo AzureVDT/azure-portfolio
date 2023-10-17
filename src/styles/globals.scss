@@ -45,4 +45,7 @@ body {
     font {
         font: inherit;
     }
+    .primaryTitle {
+        @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-thirdly uppercase text-[50px] p-10 text-center w-full h-full mb-[85px] font-bold;
+    }
 }

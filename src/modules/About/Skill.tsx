@@ -69,14 +69,13 @@ const skills = [
 const Skills = () => {
     return (
         <div className="mb-[125px]">
-            <h3 className="mb-10 lg:text-[26px] uppercase lg:text-center text-[21px] text-left font-bold">
-                My Skills
-            </h3>
+            <h3 className="primaryTitle">My Skills</h3>
             <div className="grid grid-cols-4 gap-10 justify-items-center">
                 {skills.map((item, i) => (
                     <div
                         className="flex flex-col items-center justify-center w-1/2 lg:w-1/4"
                         key={i}
+                        data-aos="fade-up"
                     >
                         <div
                             className="mb-1 flex items-center justify-center w-[120px] h-[120px] bg-text4

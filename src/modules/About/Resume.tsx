@@ -21,11 +21,12 @@ const edu = [
 const Resume = () => {
     return (
         <>
-            <h3 className="mb-[50px] lg:text-[26px] uppercase lg:text-center text-[21px] text-left">
-                EDUCATION & EXPERIENCE
-            </h3>
+            <h3 className="primaryTitle">EDUCATION & EXPERIENCE</h3>
             <div className="grid grid-cols-2">
-                <div className="w-[calc(50%-1rem)] md:w-full leading-relaxed">
+                <div
+                    className="w-[calc(50%-1rem)] md:w-full leading-relaxed"
+                    data-aos="fade-right"
+                >
                     {edu.map((item, i) => (
                         <div
                             className="mb-3 relative p-[0_20px_0_60px] before:absolute before:top-0 
