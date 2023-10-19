@@ -1,4 +1,4 @@
-export const metadata = {
+const metadata = {
     title: "AzureVDT - Portfolio Website",
     description:
         "AzureVDT - Portfolio Website is a personal portfolio website to showcase AzureVDT's skills, experience, and projects. The site contains sections highlighting AzureVDT's background, technical skills, work experience, projects, and contact information. The clean, modern design allows visitors to easily navigate the site and learn about AzureVDT's qualifications.",
@@ -6,3 +6,6 @@ export const metadata = {
     keywords: "portfolio, web development, programming, software engineering",
     url: "https://azuredev.id.vn",
 };
+
+const API_URL = "http://localhost:3000/api";
+export { API_URL, metadata };

@@ -1,4 +1,4 @@
-import { IconBriefcase } from "@/components/icon";
+import { BriefcaseIcon } from "@/components/icon";
 import React from "react";
 
 const edu = [
@@ -7,7 +7,7 @@ const edu = [
         place: "Ngo Gia Tu",
         edu: "High school",
         description:
-            "I gained an interest in the IT industry after feeling a sense of accomplishment from solving problems with programming I learned in high school. I came to Japan to study programming.",
+            "I gained an interest in the IT industry after feeling a sense of accomplishment from solving problems with programming I learned in high school.",
     },
     {
         time: "September 2021 - Now",
@@ -34,7 +34,7 @@ const Resume = () => {
                             key={i}
                         >
                             <div className="absolute top-0 left-0 flex items-center justify-center p-2 mr-1 text-base border-none rounded-full outline-none w-40px h-40px bg-thirdly">
-                                <IconBriefcase></IconBriefcase>
+                                <BriefcaseIcon></BriefcaseIcon>
                             </div>
                             <span className="text-xs p-[4px_10px] inline-block mb-[12px] rounded-[20px] font-semibold opacity-80 bg-thirdly">
                                 {item.time}

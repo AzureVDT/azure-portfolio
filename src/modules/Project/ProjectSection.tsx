@@ -2,9 +2,19 @@ import React, { useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import { motion, useInView } from "framer-motion";
 import ProjectTag from "./ProjectTag";
-import { projectsData } from "@/utils/projectData";
+import { useQuery } from "@tanstack/react-query";
+import { getProjects } from "@/store/projects.service";
+import { ProjectItemData } from "@/types/project.types";
 
 const ProjectSection = () => {
+    const { data, isLoading, error } = useQuery({
+        queryKey: ["projects"],
+        queryFn: getProjects,
+        refetchOnWindowFocus: false, // khi nhấn vào window sẽ fetch lại dữ liệu
+        cacheTime: 24 * 10 * 60 * 60 * 1000, // thời gian lưu cache > stale: 1 day
+        staleTime: 1 * 60 * 1000, // thời gian lấy dữ liệu từ cache: 1/2 day
+    });
+    const projects = data;
     const [tag, setTag] = useState("All");
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
@@ -13,7 +23,7 @@ const ProjectSection = () => {
         setTag(newTag);
     };
 
-    const filteredProjects = projectsData.filter((project) =>
+    const filteredProjects = projects?.filter((project: ProjectItemData) =>
         project.tag.includes(tag)
     );
 
@@ -48,24 +58,19 @@ const ProjectSection = () => {
                 />
             </div>
             <ul ref={ref} className="grid gap-8 md:grid-cols-3 md:gap-12">
-                {filteredProjects.map((project, index) => (
-                    <motion.li
-                        key={index}
-                        variants={cardVariants}
-                        initial="initial"
-                        animate={isInView ? "animate" : "initial"}
-                        transition={{ duration: 0.3, delay: index * 0.4 }}
-                    >
-                        <ProjectCard
-                            key={project.id}
-                            title={project.title}
-                            description={project.description}
-                            imgUrl={project.image[0]}
-                            gitUrl={project.gitUrl}
-                            previewUrl={project.previewUrl}
-                        />
-                    </motion.li>
-                ))}
+                {filteredProjects?.map(
+                    (project: ProjectItemData, index: number) => (
+                        <motion.li
+                            key={index}
+                            variants={cardVariants}
+                            initial="initial"
+                            animate={isInView ? "animate" : "initial"}
+                            transition={{ duration: 0.3, delay: index * 0.4 }}
+                        >
+                            <ProjectCard key={project.id} item={project} />
+                        </motion.li>
+                    )
+                )}
             </ul>
         </section>
     );

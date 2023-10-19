@@ -71,6 +71,7 @@ const HeroSection = () => {
                             className="rounded-lg h-[550px] object-cover"
                             width={400}
                             height={300}
+                            loading="lazy"
                         />
                     </div>
                 </motion.div>

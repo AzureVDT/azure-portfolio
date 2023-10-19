@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { GithubIcon, LinkedinIcon } from "@/components/icon";
 
 const Contact = () => {
     const [emailSubmitted, setEmailSubmitted] = useState(false);
@@ -51,22 +51,12 @@ const Contact = () => {
                         just want to say hi, I&apos;ll try my best to get back
                         to you!
                     </p>
-                    <div className="flex flex-row gap-2 socials">
+                    <div className="flex flex-row gap-2">
                         <Link href="https://github.com/AzureVDT">
-                            <Image
-                                src={"/github-icon.svg"}
-                                alt="Github Icon"
-                                width={40}
-                                height={40}
-                            />
+                            <GithubIcon></GithubIcon>
                         </Link>
                         <Link href="https://www.linkedin.com/in/thong-dinh-878838250/">
-                            <Image
-                                src={"/linkedin-icon.svg"}
-                                alt="Linkedin Icon"
-                                width={40}
-                                height={40}
-                            />
+                            <LinkedinIcon></LinkedinIcon>
                         </Link>
                     </div>
                 </div>

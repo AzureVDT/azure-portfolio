@@ -1,10 +1,3 @@
-import Footer from "@/components/layout/Footer";
-import LayoutMain from "@/components/layout/LayoutMain";
-// import Navbar from "@/components/layout/Navbar";
-import AboutSection from "@/modules/About/AboutSection";
-import Contact from "@/modules/Contact";
-import HeroSection from "@/modules/HeroSection";
-import ProjectSection from "@/modules/Project/ProjectSection";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
@@ -12,6 +5,27 @@ import dynamic from "next/dynamic";
 const Navbar = dynamic(() => import("@/components/layout/Navbar"), {
     ssr: false,
 });
+const LayoutMain = dynamic(() => import("@/components/layout/LayoutMain"), {
+    ssr: false,
+});
+const Footer = dynamic(() => import("@/components/layout/Footer"), {
+    ssr: false,
+});
+const AboutSection = dynamic(() => import("@/modules/About/AboutSection"), {
+    ssr: false,
+});
+const Contact = dynamic(() => import("@/modules/Contact"), {
+    ssr: false,
+});
+const HeroSection = dynamic(() => import("@/modules/HeroSection"), {
+    ssr: false,
+});
+const ProjectSection = dynamic(
+    () => import("@/modules/Project/ProjectSection"),
+    {
+        ssr: false,
+    }
+);
 
 export default function Home() {
     useEffect(() => {
@@ -21,7 +35,7 @@ export default function Home() {
     }, []);
     return (
         <>
-            <Navbar></Navbar>
+            <Navbar type="home"></Navbar>
             <LayoutMain>
                 <HeroSection></HeroSection>
                 <AboutSection></AboutSection>

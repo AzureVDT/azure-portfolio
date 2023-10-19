@@ -23,6 +23,7 @@ const Info = () => {
                     width={400}
                     height={300}
                     className="object-cover rounded-lg"
+                    loading="lazy"
                 ></Image>
             </div>
             <div

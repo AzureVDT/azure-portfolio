@@ -1,25 +1,22 @@
 import React from "react";
 import Link from "next/link";
-interface ProjectCardProps {
-    imgUrl: string;
-    title: string;
-    description: string;
-    gitUrl: string;
-    previewUrl: string;
+import { ProjectItemData } from "@/types/project.types";
+interface IPropertyItemProps {
+    item: ProjectItemData;
 }
-const ProjectCard = ({
-    imgUrl,
-    title,
-    description,
-    gitUrl,
-    previewUrl,
-}: ProjectCardProps) => {
+const ProjectCard = ({ item }: IPropertyItemProps) => {
+    if (!item) return null;
     return (
-        <Link href={`#`}>
+        <Link
+            href={{
+                pathname: "/project/[id]",
+                query: { id: item.id },
+            }}
+        >
             <div
                 className="relative h-52 md:h-72 rounded-t-xl group"
                 style={{
-                    background: `url(${imgUrl})`,
+                    background: `url(${item.image[0]})`,
                     backgroundSize: "cover",
                 }}
             >
@@ -27,9 +24,8 @@ const ProjectCard = ({
             </div>
             <div className="px-4 py-6 mt-3 dark:text-white rounded-b-xl">
                 <h5 className="mb-2 text-xl font-semibold dark:text-graySoft">
-                    {title}
+                    {item.title}
                 </h5>
-                <p className="leading-relaxed">{description}</p>
             </div>
         </Link>
     );

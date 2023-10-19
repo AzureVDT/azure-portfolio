@@ -1,0 +1,159 @@
+[
+    {
+        "id": 1,
+        "title": "NextJS Portfolio Website",
+        "description": "My personal portfolio website using NextJS with TypeScript",
+        "technique": [
+            "NextJS",
+            "TypeScript",
+            "TailwindCSS",
+            "ReactJS",
+            "React Query",
+            "Axios"
+        ],
+        "image": ["/projects/AzurePortfolio/1.png"],
+        "tag": ["All", "Web"],
+        "gitUrl": "https://github.com/AzureVDT/azure-portfolio.git",
+        "previewUrl": "/"
+    },
+    {
+        "id": 2,
+        "title": "Real Estate Website",
+        "description": "A real estate admin management website using NextJS and TypeScript",
+        "technique": [
+            "NextJS",
+            "TypeScript",
+            "TailwindCSS",
+            "ReactJS",
+            "React Query",
+            "Axios",
+            "Zustand"
+        ],
+        "image": ["/projects/Yariga/1.png"],
+        "tag": ["All", "Web"],
+        "gitUrl": "https://github.com/AzureVDT/Yariga-App.git",
+        "previewUrl": "/"
+    },
+    {
+        "id": 3,
+        "title": "Azure Movie App",
+        "description": "A movie app using ReactJS, JavaScript and firebase to authenticate users",
+        "technique": [
+            "ReactJS",
+            "JavaScript",
+            "TailwindCSS",
+            "SWR",
+            "Firebase",
+            "React Router"
+        ],
+        "image": ["/projects/Movie/1.png"],
+        "tag": ["All", "Web"],
+        "gitUrl": "https://github.com/AzureVDT/movies-app.git",
+        "previewUrl": "movies-app-azuredt.vercel.app"
+    },
+    {
+        "id": 4,
+        "title": "Monkey Blogging App",
+        "description": "A blogging app using ReactJS, JavaScript and firebase to authenticate users and store data",
+        "technique": [
+            "ReactJS",
+            "JavaScript",
+            "TailwindCSS",
+            "Axios",
+            "Firebase",
+            "React Router"
+        ],
+        "image": ["/projects/MonkeyBlogging/1.png"],
+        "tag": ["All", "Web"],
+        "gitUrl": "https://github.com/AzureVDT/monkey-blogging.git",
+        "previewUrl": "azure-monkey-blogging.vercel.app"
+    },
+    {
+        "id": 5,
+        "title": "Spotify Clone",
+        "description": "A spotify app using React Native, JavaScript and firebase to authenticate users and store data",
+        "technique": [
+            "ReactJS",
+            "React Native",
+            "JavaScript",
+            "Axios",
+            "Firebase",
+            "React Navigation"
+        ],
+        "image": ["/projects/Spotify/1.png"],
+        "tag": ["All", "Mobile"],
+        "gitUrl": "https://github.com/AzureVDT/Spotify-App.git",
+        "previewUrl": "/"
+    },
+    {
+        "id": 6,
+        "title": "Motobike Shop Management",
+        "description": "Java desktop application for managing a motobike shop",
+        "technique": ["Java Core", "Java Swing", "Java JDBC", "Sql Server"],
+        "image": ["/projects/Motobike/1.png"],
+        "tag": ["All", "Desktop"],
+        "gitUrl": "https://github.com/trongtinIUH/BaiTapLonJava_Nhom4.git",
+        "previewUrl": "/"
+    },
+    {
+        "id": 7,
+        "title": "Karaoke Management",
+        "description": "Java desktop application for managing a karaoke shop",
+        "technique": ["Java Core", "Java Swing", "Java JDBC", "Sql Server"],
+        "image": ["/projects/Karaoke/1.png"],
+        "tag": ["All", "Desktop"],
+        "gitUrl": "https://github.com/trongtinIUH/BaiTapLonPTUD_NHOM4.git",
+        "previewUrl": "/"
+    },
+    {
+        "id": 8,
+        "title": "Happy Fruit",
+        "description": "A fruit e-commerce website using HTML, CSS, Bootstrap, Jquery and JavaScript",
+        "technique": ["HTML", "CSS", "Bootstrap", "Jquery", "JavaScript"],
+        "image": [
+            "/projects/HappyFruit/happy-fruit1.png",
+            "/projects/HappyFruit/happy-fruit2.png",
+            "/projects/HappyFruit/happy-fruit3.png",
+            "/projects/HappyFruit/happy-fruit4.png",
+            "/projects/HappyFruit/happy-fruit5.png",
+            "/projects/HappyFruit/happy-fruit6.png",
+            "/projects/HappyFruit/happy-fruit7.png",
+            "/projects/HappyFruit/happy-fruit8.png",
+            "/projects/HappyFruit/happy-fruit9.png",
+            "/projects/HappyFruit/happy-fruit10.png"
+        ],
+        "tag": ["All", "Web"],
+        "gitUrl": "https://github.com/MaiChienNoIUH/BaiTapLon.git",
+        "previewUrl": "https://maichiennoiuh.github.io/BaiTapLon/"
+    },
+    {
+        "id": 9,
+        "title": "Besnik real estate",
+        "description": "A real estate landing page using HTML, CSS",
+        "technique": ["HTML", "CSS"],
+        "image": ["/projects/Besnik/1.png"],
+        "tag": ["All", "Web"],
+        "gitUrl": "https://github.com/AzureVDT/f8-htmlcss-01.git",
+        "previewUrl": "https://azurevdt.github.io/f8-htmlcss-01/"
+    },
+    {
+        "id": 10,
+        "title": "Education Platform",
+        "description": "A education platform using HTML, CSS",
+        "technique": ["HTML", "CSS"],
+        "image": ["/projects/Education/1.png"],
+        "tag": ["All", "Web"],
+        "gitUrl": "https://github.com/AzureVDT/f8-htmlcss-02.git",
+        "previewUrl": "https://azurevdt.github.io/f8-htmlcss-02/"
+    },
+    {
+        "id": 11,
+        "title": "Music player",
+        "description": "A music player using HTML, CSS, JavaScript",
+        "technique": ["HTML", "CSS", "JavaScript"],
+        "image": ["/projects/MusicPlayer/1.png"],
+        "tag": ["All", "Web"],
+        "gitUrl": "https://github.com/AzureVDT/F8-music-player.git",
+        "previewUrl": "https://azurevdt.github.io/F8-music-player/"
+    }
+]
