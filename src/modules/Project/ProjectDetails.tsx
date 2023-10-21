@@ -8,6 +8,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addNewFeedback } from "@/store/feedbacks.service";
 import { FeedbackItemData } from "@/types/feedback.types";
 import Viewer from "react-viewer";
+import { toast } from "react-toastify";
 
 interface IProjectDetailsProps {
     data: ProjectItemData;
@@ -38,7 +39,8 @@ const ProjectDetails = ({ data }: IProjectDetailsProps) => {
             });
             name.value = "";
             content.value = "";
-        }
+            toast.success("Send feedback successfully!");
+        } else return;
     };
     return (
         <div>
@@ -140,14 +142,32 @@ const ProjectDetails = ({ data }: IProjectDetailsProps) => {
                             </div>
                             <div className="grid grid-cols-2 gap-5 mt-6">
                                 <Link
-                                    href={data.previewUrl}
-                                    className="flex items-center justify-center px-8 py-3 rounded-lg bg-primary text-graySoft"
+                                    href={
+                                        data.previewUrl ? data.previewUrl : {}
+                                    }
+                                    className={`flex items-center justify-center px-8 py-3 rounded-lg bg-primary text-graySoft`}
+                                    target={data.previewUrl && "_blank"}
+                                    onClick={() => {
+                                        if (!data.previewUrl) {
+                                            toast.error(
+                                                "This project is not available for preview!"
+                                            );
+                                        }
+                                    }}
                                 >
                                     Preview
                                 </Link>
                                 <Link
-                                    href={data.gitUrl}
+                                    href={data.gitUrl ? data.gitUrl : {}}
                                     className="flex items-center justify-center px-8 py-3 rounded-lg bg-thirdly text-graySoft"
+                                    target={data.gitUrl && "_blank"}
+                                    onClick={() => {
+                                        if (!data.gitUrl) {
+                                            toast.error(
+                                                "This project is not available for preview!"
+                                            );
+                                        }
+                                    }}
                                 >
                                     Source Code
                                 </Link>
