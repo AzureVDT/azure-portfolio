@@ -11,7 +11,17 @@
             "React Query",
             "Axios"
         ],
-        "image": ["/projects/AzurePortfolio/1.png"],
+        "image": [
+            "/projects/AzurePortfolio/1.png",
+            "/projects/AzurePortfolio/2.png",
+            "/projects/AzurePortfolio/3.png",
+            "/projects/AzurePortfolio/4.png",
+            "/projects/AzurePortfolio/5.png",
+            "/projects/AzurePortfolio/6.png",
+            "/projects/AzurePortfolio/7.png",
+            "/projects/AzurePortfolio/8.png",
+            "/projects/AzurePortfolio/9.png"
+        ],
         "tag": ["All", "Web"],
         "gitUrl": "https://github.com/AzureVDT/azure-portfolio.git",
         "previewUrl": "/"
@@ -29,7 +39,25 @@
             "Axios",
             "Zustand"
         ],
-        "image": ["/projects/Yariga/1.png"],
+        "image": [
+            "/projects/Yariga/1.png",
+            "/projects/Yariga/2.png",
+            "/projects/Yariga/3.png",
+            "/projects/Yariga/4.png",
+            "/projects/Yariga/5.png",
+            "/projects/Yariga/6.png",
+            "/projects/Yariga/7.png",
+            "/projects/Yariga/8.png",
+            "/projects/Yariga/9.png",
+            "/projects/Yariga/10.png",
+            "/projects/Yariga/11.png",
+            "/projects/Yariga/12.png",
+            "/projects/Yariga/13.png",
+            "/projects/Yariga/14.png",
+            "/projects/Yariga/15.png",
+            "/projects/Yariga/16.png",
+            "/projects/Yariga/17.png"
+        ],
         "tag": ["All", "Web"],
         "gitUrl": "https://github.com/AzureVDT/Yariga-App.git",
         "previewUrl": "/"

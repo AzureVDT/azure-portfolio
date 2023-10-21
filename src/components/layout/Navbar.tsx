@@ -16,10 +16,7 @@ const navLinks = [
         path: "#contact",
     },
 ];
-interface NavbarProps {
-    type: "home" | "detail";
-}
-const Navbar = ({ type }: NavbarProps) => {
+const Navbar = () => {
     return (
         <div className="fixed top-0 left-0 right-0 flex items-center justify-between p-3 shadow-xl z-[9999] dark:bg-darkSoft bg-graySoft">
             <Link
@@ -39,19 +36,17 @@ const Navbar = ({ type }: NavbarProps) => {
                 <span className="text-lg font-semibold">AzureVDT</span>
             </Link>
             <DarkMode />
-            {type === "home" ? (
-                <div className="flex items-center justify-center">
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.title}
-                            href={link.path}
-                            className="px-5 py-2 text-lg font-semibold transition-all rounded-lg hover:text-thirdly"
-                        >
-                            {link.title}
-                        </a>
-                    ))}
-                </div>
-            ) : null}
+            <div className="flex items-center justify-center">
+                {navLinks.map((link) => (
+                    <a
+                        key={link.title}
+                        href={link.path}
+                        className="px-5 py-2 text-lg font-semibold transition-all rounded-lg hover:text-thirdly"
+                    >
+                        {link.title}
+                    </a>
+                ))}
+            </div>
         </div>
     );
 };

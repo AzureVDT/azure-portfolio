@@ -2,6 +2,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import Modal from "react-modal";
 const Navbar = dynamic(() => import("@/components/layout/Navbar"), {
     ssr: false,
 });
@@ -26,6 +27,8 @@ const ProjectSection = dynamic(
         ssr: false,
     }
 );
+Modal.setAppElement("#__next");
+Modal.defaultStyles = {};
 
 export default function Home() {
     useEffect(() => {
@@ -35,7 +38,7 @@ export default function Home() {
     }, []);
     return (
         <>
-            <Navbar type="home"></Navbar>
+            <Navbar></Navbar>
             <LayoutMain>
                 <HeroSection></HeroSection>
                 <AboutSection></AboutSection>

@@ -1,65 +1,76 @@
-import HeadContent from "@/components/HeadConent";
 import TextAreaAutoResize from "@/components/Textarea";
-import { getProject } from "@/store/projects.service";
-import { useQuery } from "@tanstack/react-query";
+import { ProjectItemData } from "@/types/project.types";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
+import Feedback from "../feedback/Feedback";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addNewFeedback } from "@/store/feedbacks.service";
+import { FeedbackItemData } from "@/types/feedback.types";
+import Viewer from "react-viewer";
 
-const ProjectDetails = () => {
-    const router = useRouter();
-    const id = parseInt(router.query.id as string);
-    const { data, isLoading, error } = useQuery({
-        queryKey: ["project", id],
-        queryFn: () => getProject(id),
-        staleTime: 1 * 60 * 1000,
-        enabled: !!id,
+interface IProjectDetailsProps {
+    data: ProjectItemData;
+}
+const ProjectDetails = ({ data }: IProjectDetailsProps) => {
+    const [visible, setVisible] = React.useState(false);
+    const [currentImage, setCurrentImage] = React.useState(0);
+    const queryClient = useQueryClient();
+    const mutation = useMutation<FeedbackItemData, unknown, FeedbackItemData>({
+        mutationFn: addNewFeedback,
+        onSuccess: async (feedback) => {
+            await queryClient.prefetchQuery(["feedback", feedback], () =>
+                addNewFeedback(feedback)
+            );
+        },
     });
-    if (!data || error) return null;
-    if (isLoading) return <div>Loading...</div>;
+    const handleCreateNewFeedback = () => {
+        const name = document.getElementById("textName") as HTMLInputElement;
+        const content = document.getElementById(
+            "txtMessage"
+        ) as HTMLTextAreaElement;
+        if (name.value && content.value) {
+            mutation.mutate({
+                name: name.value,
+                content: content.value,
+                createdAt: new Date().toISOString(),
+                project_id: data.id,
+            });
+            name.value = "";
+            content.value = "";
+        }
+    };
     return (
-        <div className="mt-[85px]">
-            <HeadContent
-                title={data.title}
-                image={data.image && data.image[0]}
-            ></HeadContent>
+        <div>
+            <Viewer
+                visible={visible}
+                onClose={() => {
+                    setVisible(false);
+                }}
+                images={data.image.map((item) => ({ src: item }))}
+                zIndex={10000}
+                activeIndex={currentImage}
+            />
             <div className="p-5">
-                <h2 className="flex items-center gap-5 mb-6 text-xl font-medium">
-                    <span
-                        className="cursor-pointer"
-                        onClick={() => router.push("/#projects")}
-                    >
-                        <svg
-                            width="9"
-                            height="16"
-                            viewBox="0 0 9 16"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M7.79292 0.792893C8.18345 1.18342 8.18345 1.81658 7.79292 2.20711L2.00003 8L7.79292 13.7929C8.18345 14.1834 8.18345 14.8166 7.79292 15.2071C7.4024 15.5976 6.76923 15.5976 6.37871 15.2071L0.585817 9.41422C-0.195233 8.63317 -0.195231 7.36683 0.585817 6.58579L6.37871 0.792893C6.76923 0.402369 7.4024 0.402369 7.79292 0.792893Z"
-                                fill="currentColor"
-                            />
-                        </svg>
-                    </span>
-                    Details
-                </h2>
                 <div className="grid grid-cols-[2fr_1fr] gap-6">
                     <div
                         aria-label="left"
-                        className="rounded-lg shadow-md dark:bg-darkStrock"
+                        className="rounded-lg shadow-md dark:bg-darkStrock h-[600px] overflow-hidden"
                     >
                         <div aria-label="gallery" className="mb-4">
                             <div className="grid grid-cols-[3fr_1fr] grid-rows-[162px_162px] gap-5">
                                 {data.image && data.image[0] && (
-                                    <div className="relative row-[1/-1] col-[1/2] cursor-pointer">
+                                    <div
+                                        className="relative row-[1/-1] col-[1/2] cursor-pointer"
+                                        onClick={() => {
+                                            setVisible(true);
+                                            setCurrentImage(0);
+                                        }}
+                                    >
                                         <Image
                                             src={data.image[0]}
                                             fill
-                                            alt=""
+                                            alt={data.title}
                                             className="object-cover w-full h-full rounded-lg"
                                         />
                                     </div>
@@ -71,11 +82,15 @@ const ProjectDetails = () => {
                                             <div
                                                 className="relative cursor-pointer"
                                                 key={index}
+                                                onClick={() => {
+                                                    setVisible(true);
+                                                    setCurrentImage(index + 1);
+                                                }}
                                             >
                                                 <Image
                                                     src={item}
                                                     fill
-                                                    alt=""
+                                                    alt={data.title}
                                                     className="object-cover rounded-lg row-[1/2] h-full"
                                                 />
                                                 {index === 1 && (
@@ -147,12 +162,19 @@ const ProjectDetails = () => {
                             </h4>
                             <div className="flex flex-col mb-5 gap-y-3">
                                 <input
+                                    id="textName"
                                     type="text"
                                     placeholder="Typing your display name"
                                     className="p-2 border rounded-lg outline-none border-grayf1 focus:border-thirdly"
                                 />
-                                <TextAreaAutoResize placeholder="Typing your feedback"></TextAreaAutoResize>
-                                <button className="flex items-center justify-center px-8 py-3 rounded-lg bg-primary text-graySoft">
+                                <TextAreaAutoResize
+                                    id="txtMessage"
+                                    placeholder="Typing your feedback"
+                                ></TextAreaAutoResize>
+                                <button
+                                    onClick={handleCreateNewFeedback}
+                                    className="flex items-center justify-center px-8 py-3 rounded-lg bg-primary text-graySoft"
+                                >
                                     Send
                                 </button>
                             </div>
@@ -160,18 +182,7 @@ const ProjectDetails = () => {
                                 <h4 className="text-[18px] font-medium mb-4">
                                     Feedback
                                 </h4>
-                                <div className="flex flex-col p-3 border rounded-lg border-graySoft dark:bg-darkStrock bg-grayf1 gap-y-3">
-                                    <div className="flex items-center justify-between">
-                                        <span className="font-medium text-[18px]">
-                                            Azure
-                                        </span>
-                                        <span className="text-xs cursor-pointer">
-                                            3 hour ago
-                                        </span>
-                                    </div>
-                                    <hr className="border border-text3" />
-                                    <span>Good job!</span>
-                                </div>
+                                <Feedback id={data.id}></Feedback>
                             </div>
                         </div>
                     </div>

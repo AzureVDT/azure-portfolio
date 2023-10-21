@@ -8,6 +8,8 @@ const poppins = Poppins({
     weight: ["400", "500", "600", "700"],
     subsets: ["latin"],
 });
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const queryClient = new QueryClient();
 export default function App({ Component, pageProps }: AppProps) {
     return (
@@ -15,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <div className={poppins.className}>
                 <Meta></Meta>
                 <Component {...pageProps} />
+                <ToastContainer />
             </div>
         </QueryClientProvider>
     );
