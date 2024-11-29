@@ -7,7 +7,7 @@ import Feedback from "../feedback/Feedback";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addNewFeedback } from "@/store/feedbacks.service";
 import { FeedbackItemData } from "@/types/feedback.types";
-// import Viewer from "react-viewer";
+import Viewer from "react-viewer";
 import { toast } from "react-toastify";
 
 interface IProjectDetailsProps {
@@ -44,7 +44,7 @@ const ProjectDetails = ({ data }: IProjectDetailsProps) => {
     };
     return (
         <div>
-            {/* <Viewer
+            <Viewer
                 visible={visible}
                 onClose={() => {
                     setVisible(false);
@@ -52,7 +52,7 @@ const ProjectDetails = ({ data }: IProjectDetailsProps) => {
                 images={data.image.map((item) => ({ src: item }))}
                 zIndex={10000}
                 activeIndex={currentImage}
-            /> */}
+            />
             <div className="p-5">
                 <div className="grid grid-cols-[2fr_1fr] gap-6">
                     <div

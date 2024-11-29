@@ -24,7 +24,7 @@ const HeroSection = dynamic(() => import("@/modules/HeroSection"), {
 const ProjectSection = dynamic(
     () => import("@/modules/Project/ProjectSection"),
     {
-        ssr: true,
+        ssr: false,
     }
 );
 Modal.setAppElement("#__next");

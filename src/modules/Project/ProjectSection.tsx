@@ -6,16 +6,17 @@ import ProjectTag from "./ProjectTag";
 import { useQuery } from "@tanstack/react-query";
 import { getProjects } from "@/store/projects.service";
 import { ProjectItemData } from "@/types/project.types";
+import { projects } from "@/utils/helper";
 
 const ProjectSection = () => {
-    const { data, isLoading, error } = useQuery({
-        queryKey: ["projects"],
-        queryFn: getProjects,
-        refetchOnWindowFocus: false, // khi nhấn vào window sẽ fetch lại dữ liệu
-        cacheTime: 24 * 10 * 60 * 60 * 1000, // thời gian lưu cache > stale: 1 day
-        staleTime: 1 * 60 * 1000, // thời gian lấy dữ liệu từ cache: 1/2 day
-    });
-    const projects = data;
+    // const { data, isLoading, error } = useQuery({
+    //     queryKey: ["projects"],
+    //     queryFn: getProjects,
+    //     refetchOnWindowFocus: false, // khi nhấn vào window sẽ fetch lại dữ liệu
+    //     cacheTime: 24 * 10 * 60 * 60 * 1000, // thời gian lưu cache > stale: 1 day
+    //     staleTime: 1 * 60 * 1000, // thời gian lấy dữ liệu từ cache: 1/2 day
+    // });
+    // const projects = data;
     const [tag, setTag] = useState("All");
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
