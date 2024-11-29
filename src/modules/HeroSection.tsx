@@ -4,8 +4,13 @@ import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useEffectOnce } from "usehooks-ts";
+import { renderCanvas } from "@/utils/renderCanvas";
 
 const HeroSection = () => {
+    useEffectOnce(() => {
+        renderCanvas();
+    });
     return (
         <section className="lg:py-16">
             <div className="grid grid-cols-1 sm:grid-cols-12">
@@ -76,6 +81,10 @@ const HeroSection = () => {
                     </div>
                 </motion.div>
             </div>
+            <canvas
+                className="absolute inset-0 pointer-events-none bg-skin-base"
+                id="canvas"
+            ></canvas>
         </section>
     );
 };

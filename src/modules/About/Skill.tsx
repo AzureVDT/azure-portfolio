@@ -66,16 +66,20 @@ const skills = [
     },
 ];
 
+import { motion } from "framer-motion";
+
 const Skills = () => {
     return (
         <div className="mb-[125px]">
             <h3 className="primaryTitle">My Skills</h3>
             <div className="grid grid-cols-4 gap-10 justify-items-center">
                 {skills.map((item, i) => (
-                    <div
+                    <motion.div
                         className="flex flex-col items-center justify-center w-1/2 lg:w-1/4"
                         key={i}
                         data-aos="fade-up"
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ duration: 0.1 }}
                     >
                         <div
                             className="mb-1 flex items-center justify-center w-[120px] h-[120px] bg-darkStrock dark:bg-text4
@@ -91,7 +95,7 @@ const Skills = () => {
                         <div className="text-sm font-normal uppercase">
                             <h6 className="mt-2">{item.name}</h6>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </div>

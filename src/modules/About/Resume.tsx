@@ -1,5 +1,8 @@
 import { BriefcaseIcon } from "@/components/icon";
 import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const edu = [
     {
@@ -19,23 +22,60 @@ const edu = [
 ];
 
 const Resume = () => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.3
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: {
+            x: -50,
+            opacity: 0
+        },
+        visible: {
+            x: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.5,
+                ease: "easeOut"
+            }
+        }
+    };
+
     return (
         <>
             <h3 className="primaryTitle">EDUCATION & EXPERIENCE</h3>
             <div className="grid grid-cols-2">
-                <div
+                <motion.div
+                    ref={ref}
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
                     className="w-[calc(50%-1rem)] md:w-full leading-relaxed"
-                    data-aos="fade-right"
                 >
                     {edu.map((item, i) => (
-                        <div
+                        <motion.div
+                            key={i}
+                            variants={itemVariants}
                             className="mb-3 relative p-[0_20px_0_60px] before:absolute before:top-0 
                             before:left-[20px] before:w-[1px] before:h-full before:z-[-1] before:bg-text2 text-base"
-                            key={i}
                         >
-                            <div className="absolute top-0 left-0 flex items-center justify-center p-2 mr-1 text-base border-none rounded-full outline-none w-40px h-40px bg-thirdly">
-                                <BriefcaseIcon></BriefcaseIcon>
-                            </div>
+                            <motion.div
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ delay: i * 0.3 + 0.3 }}
+                                className="absolute top-0 left-0 flex items-center justify-center p-2 mr-1 text-base border-none rounded-full outline-none w-40px h-40px bg-thirdly"
+                            >
+                                <BriefcaseIcon />
+                            </motion.div>
                             <span className="text-xs p-[4px_10px] inline-block mb-[12px] rounded-[20px] font-semibold opacity-80 bg-thirdly">
                                 {item.time}
                             </span>
@@ -43,12 +83,12 @@ const Resume = () => {
                                 {item.place}{" "}
                                 <span className="opacity-80 text-[15px] pl-[26px] text-thirdly relative before:absolute before:bg-text2 before:top-[9px] before:left-[7px] before:h-[2px] before:w-[10px] before:opacity-80">
                                     {item.edu}
-                                </span>{" "}
+                                </span>
                             </h3>
                             <p className="text-sm">{item.description}</p>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
                 <div></div>
             </div>
         </>

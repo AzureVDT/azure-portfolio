@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { GithubIcon, LinkedinIcon } from "@/components/icon";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 const Contact = () => {
     const [emailSubmitted, setEmailSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+        setIsLoading(true);
+
         const data = {
             email: e.target.email.value,
             subject: e.target.subject.value,
@@ -15,25 +20,41 @@ const Contact = () => {
         const JSONdata = JSON.stringify(data);
         const endpoint = "/api/send";
 
-        // Form the request for sending data to the server.
         const options = {
-            // The method is POST because we are sending data.
             method: "POST",
-            // Tell the server we're sending JSON.
             headers: {
                 "Content-Type": "application/json",
             },
-            // Body of the request is the JSON data we created above.
             body: JSONdata,
         };
 
-        const response = await fetch(endpoint, options);
-        const resData = await response.json();
+        // Simulate delay
+        await new Promise(resolve => setTimeout(resolve, 3000));
 
-        if (response.status === 200) {
-            console.log("Message sent.");
-            setEmailSubmitted(true);
+        try {
+            const response = await fetch(endpoint, options);
+            const resData = await response.json();
+
+            if (response.status === 200) {
+                toast.success("Email sent successfully!");
+                setEmailSubmitted(true);
+            }
+        } catch (error) {
+            console.error("Error sending message:", error);
+        } finally {
+            setIsLoading(false);
         }
+    };
+
+    const buttonVariants = {
+        initial: { scale: 1 },
+        loading: {
+            scale: 0.95,
+            transition: {
+                duration: 0.2
+            }
+        },
+        tap: { scale: 0.98 }
     };
 
     return (
@@ -117,12 +138,34 @@ const Contact = () => {
                                     placeholder="Let's talk about..."
                                 />
                             </div>
-                            <button
+                            <motion.button
                                 type="submit"
-                                className="dark:bg-primary bg-thirdly hover:bg-primary dark:hover:bg-thirdly text-white font-medium py-2.5 px-5 rounded-lg w-full"
+                                disabled={isLoading}
+                                variants={buttonVariants}
+                                initial="initial"
+                                animate={isLoading ? "loading" : "initial"}
+                                whileTap="tap"
+                                className="dark:bg-primary bg-thirdly hover:bg-primary dark:hover:bg-thirdly text-white font-medium py-2.5 px-5 rounded-lg w-full relative"
                             >
-                                Send Message
-                            </button>
+                                {isLoading ? (
+                                    <>
+                                        <span className="opacity-0">Send Message</span>
+                                        <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                            <motion.div
+                                                className="w-5 h-5 border-2 border-white rounded-full border-t-transparent"
+                                                animate={{ rotate: 360 }}
+                                                transition={{
+                                                    duration: 1,
+                                                    repeat: Infinity,
+                                                    ease: "linear"
+                                                }}
+                                            />
+                                        </div>
+                                    </>
+                                ) : (
+                                    "Send Message"
+                                )}
+                            </motion.button>
                         </form>
                     )}
                 </div>
