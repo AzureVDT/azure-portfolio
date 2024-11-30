@@ -9,11 +9,13 @@ import { addNewFeedback } from "@/store/feedbacks.service";
 import { FeedbackItemData } from "@/types/feedback.types";
 import Viewer from "react-viewer";
 import { toast } from "react-toastify";
+import SkeletonProjectDetails from "@/components/skeleton/SkeletonProjectDetails";
 
 interface IProjectDetailsProps {
     data: ProjectItemData;
 }
 const ProjectDetails = ({ data }: IProjectDetailsProps) => {
+    const [isLoading, setIsLoading] = React.useState(true);
     const [visible, setVisible] = React.useState(false);
     const [currentImage, setCurrentImage] = React.useState(0);
     const queryClient = useQueryClient();
@@ -25,6 +27,18 @@ const ProjectDetails = ({ data }: IProjectDetailsProps) => {
             );
         },
     });
+
+
+    React.useEffect(() => {
+        // Simulate loading
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isLoading) return <SkeletonProjectDetails />;
+
     const handleCreateNewFeedback = () => {
         const name = document.getElementById("textName") as HTMLInputElement;
         const content = document.getElementById(

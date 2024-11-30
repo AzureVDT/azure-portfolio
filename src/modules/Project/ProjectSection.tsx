@@ -1,28 +1,49 @@
-
 import React, { useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import { motion, useInView } from "framer-motion";
 import ProjectTag from "./ProjectTag";
-import { useQuery } from "@tanstack/react-query";
-import { getProjects } from "@/store/projects.service";
-import { ProjectItemData } from "@/types/project.types";
 import { projects } from "@/utils/helper";
+import { ProjectItemData } from "@/types/project.types";
+
+const SkeletonCard = () => {
+    return (
+        <div className="animate-pulse">
+            <motion.div
+                className="relative bg-gray-200 h-52 md:h-72 rounded-t-xl dark:bg-gray-700"
+                initial={{ opacity: 0.6 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                    repeat: Infinity,
+                    duration: 1,
+                    ease: "easeInOut"
+                }}
+            />
+            <div className="px-4 py-6 mt-3">
+                <div className="w-3/4 h-4 mb-2 bg-gray-200 rounded dark:bg-gray-700" />
+            </div>
+        </div>
+    );
+};
 
 const ProjectSection = () => {
-    // const { data, isLoading, error } = useQuery({
-    //     queryKey: ["projects"],
-    //     queryFn: getProjects,
-    //     refetchOnWindowFocus: false, // khi nhấn vào window sẽ fetch lại dữ liệu
-    //     cacheTime: 24 * 10 * 60 * 60 * 1000, // thời gian lưu cache > stale: 1 day
-    //     staleTime: 1 * 60 * 1000, // thời gian lấy dữ liệu từ cache: 1/2 day
-    // });
-    // const projects = data;
+    const [isLoading, setIsLoading] = useState(true);
     const [tag, setTag] = useState("All");
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
+    // Simulate loading
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
     const handleTagChange = (newTag: string) => {
+        setIsLoading(true);
         setTag(newTag);
+        // Simulate loading when changing tags
+        setTimeout(() => setIsLoading(false), 1000);
     };
 
     const filteredProjects = projects?.filter((project: ProjectItemData) =>
@@ -60,8 +81,20 @@ const ProjectSection = () => {
                 />
             </div>
             <ul ref={ref} className="grid gap-8 md:grid-cols-3 md:gap-12">
-                {filteredProjects?.map(
-                    (project: ProjectItemData, index: number) => (
+                {isLoading ? (
+                    [...Array(6)].map((_, index) => (
+                        <motion.li
+                            key={index}
+                            variants={cardVariants}
+                            initial="initial"
+                            animate={isInView ? "animate" : "initial"}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                        >
+                            <SkeletonCard />
+                        </motion.li>
+                    ))
+                ) : (
+                    filteredProjects?.map((project: ProjectItemData, index: number) => (
                         <motion.li
                             key={index}
                             variants={cardVariants}
@@ -71,7 +104,7 @@ const ProjectSection = () => {
                         >
                             <ProjectCard key={project.id} item={project} />
                         </motion.li>
-                    )
+                    ))
                 )}
             </ul>
         </section>
